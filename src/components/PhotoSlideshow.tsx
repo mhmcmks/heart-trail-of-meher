@@ -65,11 +65,11 @@ const PhotoSlideshow = () => {
         <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
           {/* Photo Display or Final Slide */}
           {!isFinalSlide ? (
-            <div className="relative aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/3]">
+            <div className="relative aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/3] bg-gray-100">
               <img
                 src={photos[currentIndex]}
                 alt={`Memory ${currentIndex + 1}`}
-                className={`w-full h-full object-cover cursor-pointer transition-all duration-500 ${
+                className={`w-full h-full object-contain cursor-pointer transition-all duration-500 ${
                   !isLastPhoto ? 'hover:scale-105' : ''
                 }`}
                 onClick={!isLastPhoto ? handlePhotoClick : undefined}
