@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Heart } from "lucide-react";
+import { Heart, ArrowRight } from "lucide-react";
 import HeartExplosion from "./HeartExplosion";
 
 const PhotoSlideshow = () => {
@@ -20,6 +20,12 @@ const PhotoSlideshow = () => {
   ];
 
   const handlePhotoClick = () => {
+    if (currentIndex < photos.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handleNextClick = () => {
     if (currentIndex < photos.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
@@ -47,6 +53,16 @@ const PhotoSlideshow = () => {
               }`}
               onClick={!isLastPhoto ? handlePhotoClick : undefined}
             />
+            
+            {/* Next Button - only show on non-last photos */}
+            {!isLastPhoto && (
+              <button
+                onClick={handleNextClick}
+                className="absolute bottom-6 right-6 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+              >
+                <ArrowRight size={24} className="text-gray-800" />
+              </button>
+            )}
             
             {/* Click indicator for non-last photos */}
             {!isLastPhoto && (
