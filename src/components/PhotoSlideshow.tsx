@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Heart, ArrowRight } from "lucide-react";
 import HeartExplosion from "./HeartExplosion";
@@ -54,6 +55,9 @@ const PhotoSlideshow = () => {
   const isFinalSlide = currentIndex === photos.length;
   const isFirstPhoto = currentIndex === 0;
 
+  // Check if current image is in the range that needs to be resized (images 6-14, which are indices 5-13)
+  const shouldFillContainer = currentIndex >= 5 && currentIndex <= 13;
+
   console.log("Rendering slideshow - currentIndex:", currentIndex, "isLastPhoto:", isLastPhoto, "isFinalSlide:", isFinalSlide);
 
   return (
@@ -68,9 +72,9 @@ const PhotoSlideshow = () => {
               <img
                 src={photos[currentIndex]}
                 alt={`Memory ${currentIndex + 1}`}
-                className={`w-full h-full object-cover cursor-pointer transition-all duration-500 ${
-                  !isLastPhoto ? 'hover:scale-105' : ''
-                }`}
+                className={`w-full h-full cursor-pointer transition-all duration-500 ${
+                  shouldFillContainer ? 'object-fill' : 'object-cover'
+                } ${!isLastPhoto ? 'hover:scale-105' : ''}`}
                 onClick={!isLastPhoto ? handlePhotoClick : undefined}
               />
               
