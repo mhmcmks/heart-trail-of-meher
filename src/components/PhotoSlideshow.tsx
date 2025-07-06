@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Heart, ArrowRight } from "lucide-react";
 import HeartExplosion from "./HeartExplosion";
@@ -65,16 +64,13 @@ const PhotoSlideshow = () => {
         <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
           {/* Photo Display or Final Slide */}
           {!isFinalSlide ? (
-            <div className="relative aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/3] bg-white flex items-center justify-center">
+            <div className="relative aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/3] bg-white overflow-hidden">
               <img
                 src={photos[currentIndex]}
                 alt={`Memory ${currentIndex + 1}`}
-                className={`max-w-full max-h-full object-contain cursor-pointer transition-all duration-500 ${
+                className={`w-full h-full object-cover cursor-pointer transition-all duration-500 ${
                   !isLastPhoto ? 'hover:scale-105' : ''
                 }`}
-                style={{
-                  imageRendering: 'crisp-edges'
-                }}
                 onClick={!isLastPhoto ? handlePhotoClick : undefined}
               />
               
@@ -108,7 +104,6 @@ const PhotoSlideshow = () => {
               )}
             </div>
           ) : (
-            /* Final Contact Slide */
             <div className="p-12 bg-gradient-to-br from-pink-50 via-purple-50 to-rose-50 min-h-[600px] flex flex-col items-center justify-center text-center">
               <div className="space-y-8">
                 <h2 className="text-4xl font-bold text-gray-800 mb-8">
