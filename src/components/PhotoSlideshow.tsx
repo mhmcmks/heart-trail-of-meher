@@ -20,22 +20,34 @@ const PhotoSlideshow = () => {
   ];
 
   const handlePhotoClick = () => {
+    console.log("Photo clicked, current index:", currentIndex);
     if (currentIndex < photos.length - 1) {
+      console.log("Moving to next photo:", currentIndex + 1);
       setCurrentIndex(currentIndex + 1);
+    } else {
+      console.log("Already at last photo");
     }
   };
 
-  const handleNextClick = () => {
+  const handleNextClick = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    console.log("Next button clicked, current index:", currentIndex);
     if (currentIndex < photos.length - 1) {
+      console.log("Moving to next photo:", currentIndex + 1);
       setCurrentIndex(currentIndex + 1);
+    } else {
+      console.log("Already at last photo");
     }
   };
 
   const handleHeartClick = () => {
+    console.log("Heart button clicked");
     setShowHeartExplosion(true);
   };
 
   const isLastPhoto = currentIndex === photos.length - 1;
+
+  console.log("Rendering slideshow - currentIndex:", currentIndex, "isLastPhoto:", isLastPhoto);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
@@ -58,7 +70,7 @@ const PhotoSlideshow = () => {
             {!isLastPhoto && (
               <button
                 onClick={handleNextClick}
-                className="absolute bottom-6 right-6 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+                className="absolute bottom-6 right-6 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-10"
               >
                 <ArrowRight size={24} className="text-gray-800" />
               </button>
